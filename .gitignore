@@ -1,5 +1,5 @@
-# Build artifacts
-dist/
+# Build artifacts (committed so GitHub Pages can serve them)
+!dist/
 
 # Dependencies
 node_modules/
