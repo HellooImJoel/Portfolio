@@ -1,6 +1,6 @@
 /* ============================================================
    PORTFOLIO — Joel G. Stadelman · app.js
-   Datos en vivo desde la API de GitHub + interacciones UI.
+   Live data from the GitHub API + UI interactions.
    ============================================================ */
 
 const GH_USER = "HellooImJoel";
@@ -16,9 +16,9 @@ const $$ = (s, ctx = document) => [...ctx.querySelectorAll(s)];
   const phrases = [
     "while(alive) { code(); learn(); }",
     "$ sudo build distributed-systems",
-    "> producer.send('hola', topic='mundo')",
+    "> producer.send('hello', topic='world')",
     "$ docker compose up --watch",
-    "> git commit -m 'siempre aprendiendo'",
+    "> git commit -m 'always learning'",
   ];
   let pi = 0, ci = 0, deleting = false;
   function tick() {
@@ -56,7 +56,7 @@ const $$ = (s, ctx = document) => [...ctx.querySelectorAll(s)];
   menu?.addEventListener("click", e => e.target.tagName === "A" && menu.classList.remove("open"));
 })();
 
-/* ---------- 3. Theme toggle (persistido) ---------- */
+/* ---------- 3. Theme toggle (persisted) ---------- */
 (() => {
   const btn = $("#themeToggle");
   const saved = localStorage.getItem("theme");
@@ -118,14 +118,14 @@ const $$ = (s, ctx = document) => [...ctx.querySelectorAll(s)];
     const user = await userRes.json();
     const repos = await reposRes.json();
 
-    // stats dinámicas
+    // dynamic stats
     const statRepos = $('.stat-num[data-count]');
     if (statRepos) statRepos.dataset.count = user.public_repos ?? repos.length;
 
     // total stars
     const totalStars = repos.reduce((a, r) => a + r.stargazers_count, 0);
 
-    // stars por proyecto (mapeo nombre -> card)
+    // stars per project (map name -> card)
     const byName = Object.fromEntries(repos.map(r => [r.name.toLowerCase(), r]));
     $$(".proj-card").forEach(card => {
       const link = $("a.pc-link", card);
@@ -140,7 +140,7 @@ const $$ = (s, ctx = document) => [...ctx.querySelectorAll(s)];
       if (corner) corner.textContent = (repo.fork ? "Fork" : "Public") + (repo.stargazers_count ? ` ★${repo.stargazers_count}` : "");
     });
 
-    // badge de perfil con avatar real
+    // profile badge with real avatar
     const badge = $(".kernel-badge");
     if (badge && user.avatar_url) {
       const img = document.createElement("img");
@@ -150,7 +150,7 @@ const $$ = (s, ctx = document) => [...ctx.querySelectorAll(s)];
       badge.prepend(img);
     }
   } catch (err) {
-    console.warn("GitHub API no disponible, usando valores estáticos:", err.message);
+    console.warn("GitHub API unavailable, using static values:", err.message);
     $$(".stars").forEach(el => (el.textContent = "0"));
   }
 })();
@@ -162,15 +162,15 @@ const $$ = (s, ctx = document) => [...ctx.querySelectorAll(s)];
     e.preventDefault();
     const d = new FormData(form);
     const body =
-      `Hola Joel,\n\n` +
+      `Hi Joel,\n\n` +
       `${d.get("message")}\n\n` +
       `— ${d.get("name")} (${d.get("email")})\n` +
-      `_Enviado desde portfolio (GitHub: @${GH_USER})_`;
+      `_Sent from portfolio (GitHub: @${GH_USER})_`;
     location.href =
       `mailto:?subject=${encodeURIComponent("[Portfolio] " + d.get("subject"))}` +
       `&body=${encodeURIComponent(body)}`;
     const btn = $(".mp-send", form);
-    if (btn) { btn.innerHTML = "✓ Abriste tu correo"; setTimeout(() => (btn.innerHTML = "Send Message <span class='mono dim'>↵</span>"), 3000); }
+    if (btn) { btn.innerHTML = "✓ Your mail client was opened"; setTimeout(() => (btn.innerHTML = "Send Message <span class='mono dim'>↵</span>"), 3000); }
   });
 })();
 

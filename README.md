@@ -1,52 +1,43 @@
 # Portfolio — Joel G. Stadelman
 
-Portfolio personal estilo terminal/OS (inspirado en el diseño de [abdulmomin.dev](https://www.abdulmomin.dev)),
-con datos e información obtenidos en vivo desde GitHub: [@HellooImJoel](https://github.com/HellooImJoel).
+Personal terminal/OS-style portfolio (design inspired by [abdulmomin.dev](https://www.abdulmomin.dev)),
+with information and projects pulled live from GitHub: [@HellooImJoel](https://github.com/HellooImJoel).
 
-## 🖥️ Stack del sitio
+> The site is fully in English (`lang="en"`).
 
-- HTML5 + CSS3 + JavaScript vanilla (sin build, sin dependencias)
-- Fuentes: JetBrains Mono + Space Grotesk · Iconos: Devicon
-- Datos dinámicos: los stars, repositorios y avatar se consultan en tiempo real a la GitHub API
-- Tema oscuro por defecto + toggle a tema claro (persistido en `localStorage`)
+## 🖥️ Site stack
 
-## 🌐 Publicar en GitHub (repo asignado: `HellooImJoel/portfolio`)
+- HTML5 + CSS3 + vanilla JavaScript (no build step, no dependencies)
+- Fonts: JetBrains Mono + Space Grotesk · Icons: Devicon
+- Live data: stars, repositories and avatar are fetched in real time from the GitHub API
+- Dark theme by default + light theme toggle (persisted in `localStorage`)
 
-URL del repositorio destino: **https://github.com/HellooImJoel/portfolio**
-Sitio una vez publicado: **https://HellooImJoel.github.io/portfolio/**
+## 🌐 Published on GitHub
 
-**Opción A — push con Personal Access Token (recomendada, no requiere instalar nada):**
-1. Creá un token con permiso `repo` en:
-   https://github.com/settings/tokens/new?scopes=repo&description=portfolio-push
-2. Desde la carpeta del proyecto corré:
+Repository: **https://github.com/HellooImJoel/Portfolio**
+Live site: **https://hellooimjoel.github.io/Portfolio/**
+
+To deploy updates:
+
 ```bash
-git remote add origin https://github.com/HellooImJoel/portfolio.git 2>/dev/null || true
-git push "https://HellooImJoel:<TU_TOKEN>@github.com/HellooImJoel/portfolio.git" HEAD:main
-```
-3. Activá Pages: **Settings → Pages → Source: Deploy from a branch → `main` / root → Save**.
-
-**Opción B — GitHub CLI:**
-```bash
-gh auth login
-gh repo create HellooImJoel/portfolio --public --source=. --push
-gh api repos/HellooImJoel/portfolio/pages -X POST -f build_type=legacy
+git push origin main
 ```
 
-> ⚠️ Nota: este entorno de trabajo no tiene credenciales de escritura para GitHub configuradas (`gh` no está instalado y no hay token disponible), por lo que el push final debe ejecutarse con tu token (Opción A) o con `gh` autenticado (Opción B). Todo el código ya está commiteado en la rama local y listo para subir sin cambios.
+GitHub Pages is already enabled for the `main` branch (root source), so pushes publish automatically.
 
-## 🚀 Correr localmente
+## 🚀 Run locally
 
 ```bash
 python3 -m http.server 8000
-# abrir http://localhost:8000
+# open http://localhost:8000
 ```
 
-## 📄 Estructura
+## 📄 Structure
 
-| Archivo      | Descripción                                        |
-|--------------|----------------------------------------------------|
-| `index.html` | Secciones: Hero, About.system, Skills.json, git log --timeline, ~/projects, ./contact.exe |
-| `style.css`  | Tema OS/terminal, animaciones, responsive          |
-| `app.js`     | Typewriter, scroll spy, reveal, datos live GitHub, formulario mailto |
+| File         | Description                                          |
+|--------------|------------------------------------------------------|
+| `index.html` | Sections: Hero, About.system, Skills.json, git log --timeline, ~/projects, ./contact.exe |
+| `style.css`  | OS/terminal theme, animations, responsive layout     |
+| `app.js`     | Typewriter, scroll spy, reveal, live GitHub data, mailto form |
 
 © 2026 Joel G. Stadelman
