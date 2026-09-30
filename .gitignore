@@ -1,5 +1,2 @@
-# Build artifacts (committed so GitHub Pages can serve them)
-!dist/
-
-# Dependencies
-node_modules/
+server.log
+.DS_Store
