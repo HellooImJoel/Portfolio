@@ -1,2 +1,5 @@
-server.log
-.DS_Store
+# Build artifacts
+dist/
+
+# Dependencies
+node_modules/
